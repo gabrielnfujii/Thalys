@@ -1,2 +1,2 @@
 # Thalys
-Projects about College
+Projects about our College
