@@ -25,6 +25,9 @@ def carregar_votos(arquivo):
             return pickle.load(f)
     return []
 
+
+
+
 class UrnaEletronica:
     def __init__(self, root):
         self.root = root
