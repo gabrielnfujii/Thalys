@@ -25,9 +25,6 @@ def carregar_votos(arquivo):
             return pickle.load(f)
     return []
 
-
-
-
 class UrnaEletronica:
     def __init__(self, root):
         self.root = root
@@ -62,3 +59,39 @@ class UrnaEletronica:
             else:
                 self.eleitor_atual = eleitor
                 self.tela_votacao()
+         else:
+            messagebox.showerror("Erro", "Eleitor não encontrado.")
+            self.tela_inicial()
+
+    def tela_votacao(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        
+        tk.Label(self.root, text=f"Bem-vindo, {self.eleitor_atual['nome']}!").pack(pady=10)
+        tk.Label(self.root, text="Digite o número do candidato ou escolha outra opção:").pack(pady=10)
+        
+        self.voto_entry = tk.Entry(self.root)
+        self.voto_entry.pack(pady=5)
+        
+        tk.Button(self.root, text="Confirmar", command=self.registrar_voto).pack(pady=5)
+        tk.Button(self.root, text="Voto Branco", command=lambda: self.registrar_voto(voto="branco")).pack(pady=5)
+        tk.Button(self.root, text="Voto Nulo", command=lambda: self.registrar_voto(voto="nulo")).pack(pady=5)
+
+    def registrar_voto(self, voto=None):
+        if voto is None:
+            numero_candidato = self.voto_entry.get()
+            candidato = next((c for c in self.candidatos if c['numero'] == numero_candidato), None)
+            if candidato:
+                voto = candidato['nome']
+            else:
+                voto = "nulo"
+        
+        self.votos.append({'titulo': self.eleitor_atual['titulo'], 'voto': voto})
+        salvar_votos('votos.pkl', self.votos)
+        messagebox.showinfo("Sucesso", "Voto registrado com sucesso!")
+        self.tela_inicial()
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    urna = UrnaEletronica(root)
+    root.mainloop()
