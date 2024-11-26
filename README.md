@@ -1,4 +1,5 @@
 
+
 # Sistema de Votação Eletrônica - Curso de Sistemas de Informação
 
 Este repositório contém um sistema de votação eletrônica desenvolvido como parte de uma atividade acadêmica no curso de Sistemas de Informação da Universidade Católica de Santos.  
@@ -79,3 +80,7 @@ cpf,nome
 - O sistema exibirá mensagens de erro caso algum arquivo esteja faltando ou incorreto.  
 
 ---
+
+# Thalys
+Projects about our College
+
