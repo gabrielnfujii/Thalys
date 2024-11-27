@@ -59,7 +59,7 @@ class UrnaEletronica:
             else:
                 self.eleitor_atual = eleitor
                 self.tela_votacao()
-         else:
+        else:
             messagebox.showerror("Erro", "Eleitor não encontrado.")
             self.tela_inicial()
 
